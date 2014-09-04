@@ -10,7 +10,7 @@ goog.require('ol.dom');
 goog.require('ol.proj');
 goog.require('ol.source.TileImage');
 goog.require('ol.tilegrid.Zoomify');
-
+goog.require('ol.control.ImageDepthControl')
 
 /**
  * @enum {string}
@@ -19,11 +19,6 @@ ol.source.BiolucidaTierSizeCalculation = {
   DEFAULT: 'default',
   TRUNCATED: 'truncated'
 };
-
-
-
-
-
 
 
 /**
@@ -39,7 +34,7 @@ ol.source.Biolucida = function(opt_options) {
 
   var options = goog.isDef(opt_options) ? opt_options : {};
 
-//    console.log(options);
+   console.log(options);
 
   var size = options.size;
   var tierSizeCalculation = goog.isDef(options.tierSizeCalculation) ?
@@ -49,11 +44,9 @@ ol.source.Biolucida = function(opt_options) {
   var imageWidth = size[0];
   var imageHeight = size[1];
   var tierSizeInTiles = [];
-//  var tileSize = ol.DEFAULT_TILE_SIZE;
-  var tileSize = 512;
-
+  var tileSizeBase = 512;
+  var tileSize = tileSizeBase;
   var zoommap = options.zoommap;
-
   var z_index = options.z_index;
 
   switch (tierSizeCalculation) {
@@ -101,8 +94,10 @@ ol.source.Biolucida = function(opt_options) {
 
   resolutions.reverse();
 
+  // 
   var tileGrid = new ol.tilegrid.Zoomify({
-    resolutions: resolutions
+    resolutions: resolutions, 
+    tileSize: tileSizeBase
   });
 
   var url = options.url;
@@ -119,27 +114,16 @@ ol.source.Biolucida = function(opt_options) {
         if (goog.isNull(tileCoord)) {
           return undefined;
         } else {
-
-//          var tileIndex = tileCoord.x +
-//              tileCoord.y * tierSizeInTiles[tileCoord.z][0] +
-//              tileCountUpToTier[tileCoord.z];
-//
-//          var tileGroup = (tileIndex / ol.DEFAULT_TILE_SIZE) | 0;
-//          var scale = Math.pow(2, tileGrid.getMaxZoom() - tileCoord.z);
-//          var x_pos = tileCoord.x * tileGrid.getTileSize(0);
-//          var y_pos = tileCoord.y * tileGrid.getTileSize(0);
-
-          if (zoommap.indexOf(tileCoord.z) > -1){
-            return url + tileCoord.z + '-' + tileCoord.x + '-' + tileCoord.y + '-' + z_index;
+          var tileCoordZ = tileCoord[0];
+          var tileCoordX = tileCoord[1];
+          var tileCoordY = tileCoord[2];
+          
+          if (zoommap.indexOf(tileCoordZ) > -1){
+            // console.log(url + tileCoordZ + '-' + tileCoordX + '-' + tileCoordY + '-' + z_index);
+            return url + tileCoordZ + '-' + tileCoordX + '-' + tileCoordY + '-' + z_index;
           }
-//          console.log('should skip me:' +  url + tileCoord.z + '-' + tileCoord.x + '-' + tileCoord.y + '-' + z_index);
-
+          // console.log('SKIP', url + tileCoordZ + '-' + tileCoordX + '-' + tileCoordY + '-' + z_index);
           return '';
-
-//          return url + '?' + x_pos + '+' + y_pos + '+' + tileGrid.getTileSize(0) +
-//              '+' + tileGrid.getTileSize(0) + '+' + scale + '+' + '80+s';
-//          return url + 'TileGroup' + tileGroup + '/' +
-//              tileCoord.z + '-' + tileCoord.x + '-' + tileCoord.y + '.jpg';
         }
       });
 
@@ -190,7 +174,8 @@ goog.inherits(ol.source.BiolucidaTile_, ol.ImageTile);
  */
 ol.source.BiolucidaTile_.prototype.getImage = function(opt_context) {
 
-  var tileSize = ol.DEFAULT_TILE_SIZE;
+  // var tileSize = ol.DEFAULT_TILE_SIZE;
+  var tileSize = 512;
 
   var key = goog.isDef(opt_context) ? goog.getUid(opt_context).toString() : '';
 

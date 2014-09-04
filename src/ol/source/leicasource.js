@@ -106,17 +106,20 @@ ol.source.Leica = function(opt_options) {
         if (goog.isNull(tileCoord)) {
           return undefined;
         } else {
-          var tileIndex = tileCoord.x +
-              tileCoord.y * tierSizeInTiles[tileCoord.z][0] +
-              tileCountUpToTier[tileCoord.z];
+          
+          var tileCoordZ = tileCoord[0];
+          var tileCoordX = tileCoord[1];
+          var tileCoordY = tileCoord[2];
+          var tileIndex = tileCoordX +
+              tileCoordY * tierSizeInTiles[tileCoordZ][0] +
+              tileCountUpToTier[tileCoordZ];
+          
           var tileGroup = (tileIndex / ol.DEFAULT_TILE_SIZE) | 0;
-          var scale = Math.pow(2, tileGrid.getMaxZoom() - tileCoord.z);
-          var x_pos = tileCoord.x * tileGrid.getTileSize(0);
-          var y_pos = tileCoord.y * tileGrid.getTileSize(0);
+          var scale = Math.pow(2, tileGrid.getMaxZoom() - tileCoordZ);
+          var x_pos = tileCoordX * tileGrid.getTileSize(0);
+          var y_pos = tileCoordY * tileGrid.getTileSize(0);
           return url + '?' + x_pos + '+' + y_pos + '+' + tileGrid.getTileSize(0) +
               '+' + tileGrid.getTileSize(0) + '+' + scale + '+' + '80+s';
-//          return url + 'TileGroup' + tileGroup + '/' +
-//              tileCoord.z + '-' + tileCoord.x + '-' + tileCoord.y + '.jpg';
         }
       });
 
