@@ -36,7 +36,8 @@ ol.control.ScaleLineUnits = {
   IMPERIAL: 'imperial',
   NAUTICAL: 'nautical',
   METRIC: 'metric',
-  US: 'us'
+  US: 'us',
+  PIXELS: 'pixels'
 };
 
 
@@ -240,7 +241,10 @@ ol.control.ScaleLine.prototype.updateElement_ = function() {
     pointResolution *= 180 / (Math.PI * cosLatitude * radius);
     projectionUnits = ol.proj.Units.DEGREES;
 
-  } else {
+  } else if ((projectionUnits == 'pixels')){
+  //      console.log(projectionUnits, pointResolution)
+  } 
+  else {
     this.toEPSG4326_ = null;
   }
 
@@ -251,7 +255,9 @@ ol.control.ScaleLine.prototype.updateElement_ = function() {
         units == ol.control.ScaleLineUnits.NAUTICAL) &&
        projectionUnits == ol.proj.Units.METERS) ||
       (units == ol.control.ScaleLineUnits.DEGREES &&
-       projectionUnits == ol.proj.Units.DEGREES));
+       projectionUnits == ol.proj.Units.DEGREES) || 
+        (units == ol.control.ScaleLineUnits.PIXELS &&
+       projectionUnits == ol.proj.Units.PIXELS));
 
   var nominalCount = this.minWidth_ * pointResolution;
   var suffix = '';
@@ -300,6 +306,9 @@ ol.control.ScaleLine.prototype.updateElement_ = function() {
       suffix = 'mi';
       pointResolution /= 1609.3472;
     }
+  } else if (units == ol.control.ScaleLineUnits.PIXELS) {
+      pointResolution *= 1;
+      suffix = 'px';
   } else {
     goog.asserts.fail();
   }
