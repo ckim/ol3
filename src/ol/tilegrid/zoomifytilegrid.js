@@ -21,7 +21,8 @@ ol.tilegrid.Zoomify = function(opt_options) {
   var options = goog.isDef(opt_options) ? opt_options : options;
   goog.base(this, {
     origin: [0, 0],
-    resolutions: options.resolutions
+    resolutions: options.resolutions,
+    tileSize: options.tileSize
   });
 
 };
