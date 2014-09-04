@@ -5959,3 +5959,140 @@ olx.ViewState.prototype.resolution;
  * @api
  */
 olx.ViewState.prototype.rotation;
+
+
+
+/***************************/
+/* OL microscopy additions */
+/* Rich Stoner   ***********/
+/***************************/
+
+/**
+ * @typedef {{attributions: (Array.<ol.Attribution>|undefined),
+ *     crossOrigin: (null|string|undefined),
+ *     logo: (string|olx.LogoOptions|undefined),
+ *     url: !string,
+ *     tierSizeCalculation: (string|undefined),
+ *     size: ol.Size}}
+ * @api
+ */
+olx.source.LeicaOptions;
+
+
+/**
+ * Attributions.
+ * @type {Array.<ol.Attribution>|undefined}
+ */
+olx.source.LeicaOptions.prototype.attributions;
+
+
+/**
+ * Cross origin setting for image requests.
+ * @type {null|string|undefined}
+ */
+olx.source.LeicaOptions.prototype.crossOrigin;
+
+
+/**
+ * Logo.
+ * @type {string|olx.LogoOptions|undefined}
+ */
+olx.source.LeicaOptions.prototype.logo;
+
+
+/**
+ * Prefix of URL template.
+ * @type {!string}
+ */
+olx.source.LeicaOptions.prototype.url;
+
+
+/**
+ * Tier size calculation method: `default` or `truncated`.
+ * @type {string|undefined}
+ */
+olx.source.LeicaOptions.prototype.tierSizeCalculation;
+
+
+/**
+ * Size of the image.
+ * @type {ol.Size}
+ */
+olx.source.LeicaOptions.prototype.size;
+
+
+
+
+/**
+ * @typedef {{attributions: (Array.<ol.Attribution>|undefined),
+ *     crossOrigin: (null|string|undefined),
+ *     logo: (string|olx.LogoOptions|undefined),
+ *     url: !string,
+ *     tierSizeCalculation: (string|undefined),
+ *     size: ol.Size}}
+ * @api
+ */
+olx.source.BiolucidaOptions;
+
+
+/**
+ * Attributions.
+ * @type {Array.<ol.Attribution>|undefined}
+ */
+olx.source.BiolucidaOptions.prototype.attributions;
+
+
+/**
+ * Cross origin setting for image requests.
+ * @type {null|string|undefined}
+ */
+olx.source.BiolucidaOptions.prototype.crossOrigin;
+
+
+/**
+ * Logo.
+ * @type {string|olx.LogoOptions|undefined}
+ */
+olx.source.BiolucidaOptions.prototype.logo;
+
+
+/**
+ * Prefix of URL template.
+ * @type {!string}
+ */
+olx.source.BiolucidaOptions.prototype.url;
+
+/**
+ * The supported zoom levels
+ * @type {Array.<string>|undefined}
+ */
+olx.source.BiolucidaOptions.prototype.zoommap;
+
+
+/**
+ * The z index
+ * @type {number|undefined}
+ */
+olx.source.BiolucidaOptions.prototype.z_index;
+
+
+/**
+ * Tier size calculation method: `default` or `truncated`.
+ * @type {string|undefined}
+ */
+olx.source.BiolucidaOptions.prototype.tierSizeCalculation;
+
+
+/**
+ * Size of the image.
+ * @type {ol.Size}
+ */
+olx.source.BiolucidaOptions.prototype.size;
+
+
+
+
+
+
+
+
