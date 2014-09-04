@@ -252,7 +252,7 @@ ol.proj.Projection.prototype.setWorldExtent = function(worldExtent) {
  * @return {number} Point resolution.
  */
 ol.proj.Projection.prototype.getPointResolution = function(resolution, point) {
-  if (this.getUnits() == ol.proj.Units.DEGREES) {
+  if (this.getUnits() == ol.proj.Units.DEGREES || this.getUnits() == ol.proj.Units.PIXELS ) {
     return resolution;
   } else {
     // Estimate point resolution by transforming the center pixel to EPSG:4326,
