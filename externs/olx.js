@@ -6188,4 +6188,19 @@ olx.control.ImageDepthControlOptions.prototype.maxResolution;
  */
 olx.control.ImageDepthControlOptions.prototype.minResolution;
 
+/**
+ * Z adjust callback.
+ * @type { function(number) }
+ * @api stable
+ */
+olx.control.ImageDepthControlOptions.prototype.callback;
+
+/**
+ * z- range
+ * @type { number | undefined }
+ * @api stable
+ */
+olx.control.ImageDepthControlOptions.prototype.z_planes;
+
+
 

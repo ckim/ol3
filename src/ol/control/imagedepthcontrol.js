@@ -38,17 +38,18 @@ ol.control.ImageDepthControl = function(opt_options) {
 
   // var options = goog.isDef(opt_options) ? opt_options : {};
 
-  this.options = goog.isDef(opt_options) ? opt_options : {};
-
+  var options = goog.isDef(opt_options) ? opt_options : {};
 
   /**
    * Will hold the current resolution of the view.
-   *
    * @type {number|undefined}
    * @private
    */
   this.currentResolution_ = 0;
 
+  this.callback = options.callback;
+
+  this.z_planes = options.z_planes;
 
   this.resolution = 0;
 
@@ -69,7 +70,7 @@ ol.control.ImageDepthControl = function(opt_options) {
    */
   this.sliderInitialized_ = false;
 
-  var className = goog.isDef(this.options.className) ?
+  var className = goog.isDef(options.className) ?
       options.className : 'ol-depthcontrol';
   var thumbElement = goog.dom.createDom(goog.dom.TagName.DIV,
       [className + '-thumb', ol.css.CLASS_UNSELECTABLE]);
@@ -201,7 +202,7 @@ ol.control.ImageDepthControl.prototype.handleContainerClick_ = function(browserE
   // resolution = this.resolutionForAmount_(amountDragged);
   this.resolution = -1*(goog.math.clamp(amountDragged, 0, 1) - 1);
 
-  this.options.callback(this.resolution)
+  this.callback(this.resolution)
 
   this.positionThumbForResolution_(this.resolution);
 
@@ -273,7 +274,7 @@ ol.control.ImageDepthControl.prototype.resolutionForAmount_ = function(amount) {
   // var fn = this.getMap().getView().getResolutionForValueFunction();
   // return fn(amount);
   // console.log(amount);
-  return Math.round(amount * this.options.z_planes);
+  return Math.round(amount * this.z_planes);
 };
 
 
@@ -315,7 +316,7 @@ ol.control.ImageDepthControl.prototype.handleSliderChange_ = function(e) {
       resolution = -1*(goog.math.clamp(amountDragged, 0, 1) - 1);
 
       if(Math.abs(resolution) - Math.abs(this.resolution) > 0.1){
-        this.options.callback(resolution)
+        this.callback(resolution)
         this.resolution = resolution;
       }
   }
@@ -323,7 +324,7 @@ ol.control.ImageDepthControl.prototype.handleSliderChange_ = function(e) {
 
       var amountDragged = this.amountDragged_(e.left, e.top);
       resolution = -1*(goog.math.clamp(amountDragged, 0, 1) - 1);  
-      this.options.callback(resolution)
+      this.callback(resolution)
       this.resolution = resolution;
   }
 
