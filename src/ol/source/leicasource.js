@@ -44,7 +44,8 @@ ol.source.Leica = function(opt_options) {
   var imageHeight = size[1];
   var tierSizeInTiles = [];
 //  var tileSize = ol.DEFAULT_TILE_SIZE;
-    var tileSize = 512;
+  var tileSizeBase = 512;
+  var tileSize = tileSizeBase;
 
   switch (tierSizeCalculation) {
     case ol.source.LeicaTierSizeCalculation.DEFAULT:
@@ -89,7 +90,8 @@ ol.source.Leica = function(opt_options) {
   resolutions.reverse();
 
   var tileGrid = new ol.tilegrid.Zoomify({
-    resolutions: resolutions
+    resolutions: resolutions,
+    tileSize: tileSizeBase
   });
 
   var url = options.url;
@@ -110,6 +112,7 @@ ol.source.Leica = function(opt_options) {
           var tileCoordZ = tileCoord[0];
           var tileCoordX = tileCoord[1];
           var tileCoordY = tileCoord[2];
+
           var tileIndex = tileCoordX +
               tileCoordY * tierSizeInTiles[tileCoordZ][0] +
               tileCountUpToTier[tileCoordZ];
@@ -167,7 +170,10 @@ goog.inherits(ol.source.LeicaTile_, ol.ImageTile);
  * @inheritDoc
  */
 ol.source.LeicaTile_.prototype.getImage = function(opt_context) {
-  var tileSize = ol.DEFAULT_TILE_SIZE;
+  // var tileSize = ol.DEFAULT_TILE_SIZE;
+
+  var tileSize = 512;
+
   var key = goog.isDef(opt_context) ? goog.getUid(opt_context).toString() : '';
   if (key in this.leicaImageByContext_) {
     return this.leicaImageByContext_[key];
