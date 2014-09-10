@@ -63,7 +63,7 @@ if (require.main === module) {
   var options = nomnom.options({
     port: {
       abbr: 'p',
-      default: 3000,
+      default: 8000,
       help: 'Port for incoming connections',
       metavar: 'PORT'
     },

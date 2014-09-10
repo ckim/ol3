@@ -5959,3 +5959,248 @@ olx.ViewState.prototype.resolution;
  * @api
  */
 olx.ViewState.prototype.rotation;
+
+
+
+/***************************/
+/* OL microscopy additions */
+/* Rich Stoner   ***********/
+/***************************/
+
+/**
+ * @typedef {{attributions: (Array.<ol.Attribution>|undefined),
+ *     crossOrigin: (null|string|undefined),
+ *     logo: (string|olx.LogoOptions|undefined),
+ *     url: !string,
+ *     tierSizeCalculation: (string|undefined),
+ *     size: ol.Size}}
+ * @api
+ */
+olx.source.LeicaOptions;
+
+
+/**
+ * Attributions.
+ * @type {Array.<ol.Attribution>|undefined}
+ */
+olx.source.LeicaOptions.prototype.attributions;
+
+
+/**
+ * Cross origin setting for image requests.
+ * @type {null|string|undefined}
+ */
+olx.source.LeicaOptions.prototype.crossOrigin;
+
+
+/**
+ * Logo.
+ * @type {string|olx.LogoOptions|undefined}
+ */
+olx.source.LeicaOptions.prototype.logo;
+
+
+/**
+ * Prefix of URL template.
+ * @type {!string}
+ */
+olx.source.LeicaOptions.prototype.url;
+
+
+/**
+ * Tier size calculation method: `default` or `truncated`.
+ * @type {string|undefined}
+ */
+olx.source.LeicaOptions.prototype.tierSizeCalculation;
+
+
+/**
+ * Size of the image.
+ * @type {ol.Size}
+ */
+olx.source.LeicaOptions.prototype.size;
+
+
+
+
+/**
+ * @typedef {{attributions: (Array.<ol.Attribution>|undefined),
+ *     crossOrigin: (null|string|undefined),
+ *     logo: (string|olx.LogoOptions|undefined),
+ *     url: !string,
+ *     tierSizeCalculation: (string|undefined),
+ *     size: ol.Size}}
+ * @api
+ */
+olx.source.BiolucidaOptions;
+
+
+/**
+ * Attributions.
+ * @type {Array.<ol.Attribution>|undefined}
+ */
+olx.source.BiolucidaOptions.prototype.attributions;
+
+
+/**
+ * Cross origin setting for image requests.
+ * @type {null|string|undefined}
+ */
+olx.source.BiolucidaOptions.prototype.crossOrigin;
+
+
+/**
+ * Logo.
+ * @type {string|olx.LogoOptions|undefined}
+ */
+olx.source.BiolucidaOptions.prototype.logo;
+
+
+/**
+ * Prefix of URL template.
+ * @type {!string}
+ */
+olx.source.BiolucidaOptions.prototype.url;
+
+/**
+ * The supported zoom levels
+ * @type {Array.<string>|undefined}
+ */
+olx.source.BiolucidaOptions.prototype.zoommap;
+
+
+/**
+ * The z index
+ * @type {number|undefined}
+ */
+olx.source.BiolucidaOptions.prototype.z_index;
+
+
+/**
+ * Tier size calculation method: `default` or `truncated`.
+ * @type {string|undefined}
+ */
+olx.source.BiolucidaOptions.prototype.tierSizeCalculation;
+
+
+/**
+ * Size of the image.
+ * @type {ol.Size}
+ */
+olx.source.BiolucidaOptions.prototype.size;
+
+
+
+
+/**
+ * @typedef {{map: (ol.Map|undefined),
+ *     target: (Element|undefined),
+ *     layers: (Array.<ol.layer.Layer>|ol.Collection|undefined),
+ *     maximized: (boolean|undefined),
+ *     maxRatio: (number|undefined),
+ *     minRatio: (number|undefined),
+ *     rotateBox: (boolean|undefined)}}
+ */
+olx.control.OverviewMapOptions;
+
+
+/**
+ * The map that this overview map is for.
+ * @type {ol.Map|undefined}
+ */
+olx.control.OverviewMapOptions.prototype.map;
+
+
+/**
+ * The target element for this overview map.
+ * @type {Element|undefined}
+ */
+olx.control.OverviewMapOptions.prototype.target;
+
+
+/**
+ * Layers for the overview map. If not set, then all main map layers are used
+ * instead.
+ * @type {Array.<ol.layer.Layer>|ol.Collection|undefined} 
+ */
+olx.control.OverviewMapOptions.prototype.layers;
+
+
+/**
+ * Start as maximized (visible). Defaults to false.
+ * @type {boolean|undefined}
+ */
+olx.control.OverviewMapOptions.prototype.maximized;
+
+
+/**
+ * Maximum extent ratio.
+ * @type {number|undefined}
+ */
+olx.control.OverviewMapOptions.prototype.maxRatio;
+
+
+/**
+ * Minimum extent ratio.
+ * @type {number|undefined}
+ */
+olx.control.OverviewMapOptions.prototype.minRatio;
+
+
+/**
+ * Whether to rotate the box when the main map rotation changes or the overview
+ * map instead. Defaults to false.
+ * @type {boolean|undefined}
+ */
+olx.control.OverviewMapOptions.prototype.rotateBox;
+
+
+
+/**
+ * @typedef {{className: (string|undefined),
+ *     maxResolution: (number|undefined),
+ *     minResolution: (number|undefined)}}
+ * @api stable
+ */
+olx.control.ImageDepthControlOptions;
+
+
+/**
+ * CSS class name.
+ * @type {string|undefined}
+ * @api stable
+ */
+olx.control.ImageDepthControlOptions.prototype.className;
+
+
+/**
+ * Maximum resolution.
+ * @type {number|undefined}
+ * @api stable
+ */
+olx.control.ImageDepthControlOptions.prototype.maxResolution;
+
+
+/**
+ * Minimum resolution.
+ * @type {number|undefined}
+ * @api stable
+ */
+olx.control.ImageDepthControlOptions.prototype.minResolution;
+
+/**
+ * Z adjust callback.
+ * @type { function(number) }
+ * @api stable
+ */
+olx.control.ImageDepthControlOptions.prototype.callback;
+
+/**
+ * z- range
+ * @type { number | undefined }
+ * @api stable
+ */
+olx.control.ImageDepthControlOptions.prototype.z_planes;
+
+
+
